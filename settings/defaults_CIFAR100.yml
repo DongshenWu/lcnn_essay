@@ -1,0 +1,32 @@
+## Default settings for the main comparison
+# this file can be loaded with the following command:
+# import yaml
+# with open('settings/defaults.yml') as f:
+#     defaults = yaml.load(f, Loader=yaml.SafeLoader)
+
+batch_size: 256
+num_workers: 4
+
+optimizer: 
+  name: SGD
+  momentum: 0.9
+
+lr_scheduler:
+  name: OneCycleLR
+
+trainset:
+  name: CIFAR100
+  center: True
+
+loss:
+  name: LipCrossEntropyLoss
+  margin: 0.3993
+  temperature: 0.25
+
+# To use Tsuzuku hinge-with-margin instead, replace the loss block above with:
+# loss:
+#   name: MulticlassHingeWithMargin
+#   margin: 0.3993   # = sqrt(2) * 36/255, the CIFAR robustness radius in logit units
+
+model:
+  nrof_classes: 100
