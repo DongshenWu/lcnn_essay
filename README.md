@@ -2,21 +2,19 @@
 
 A benchmarking codebase for **1-Lipschitz convolutional neural network** under certifiable adversarial robustness. It is built on top of [`berndprach/1LipschitzLayersCompared`](https://github.com/berndprach/1LipschitzLayersCompared) (Prach, Brau, Buttazzo & Lampert, CVPR 2024), extended for my Cambridge Part III essay to include more activations / losses and an empirical (PGD) robustness evaluator.
 
-<img src="https://github.com/DongshenWu/lcnn_essay/cover.png" alt="Radar plot of results" width="800"/>
+![Radar plot of the results](cover.png)
 
 A single training run is a 5-tuple **(dataset, model, layer, activation, loss)** plus optimiser hyperparameters, all expressed in a YAML settings file. Everything else — architecture wiring, certified-radius evaluation, hyperparameter sampling — is shared infrastructure.
 
 ## What you can compose
 
-| Slot | Available choices | Abbrev. used in `results/` |
+| Slot | Available choices | Abbreviation |
 |------|-------------------|----------------------------|
 | **Dataset** | `CIFAR10`, `CIFAR100`, `FashionMNIST`, `TinyImageNet` | — |
-| **Model** | `ConvNet{XS,S,M,L}` (32×32 inputs) · `TConvNet{XS,S,M,L}` (64×64 inputs) | `XS, S, M, L` (or `TXS…`) |
-| **1-Lipschitz layer** | `AOLConv2d{,Dirac,Orth}`, `BCOP`, `CayleyConv`, `CPLConv2d`, `LOT`, `SLLConv2d`, `SOC`, `SpectralNormConv2d{,Strict}`, `SandwichConv` | `AOL, BCOP, Cayley, CPL, LOT, SLL, SOC, SN, Sand` |
+| **Model** | `ConvNet{XS,S,M,L}` (32×32 inputs), `TConvNet{XS,S,M,L}` (64×64 inputs) | `XS, S, M, L` (or `TXS…`) |
+| **Layer** | `AOLConv2d{,Dirac,Orth}`, `BCOP`, `CayleyConv`, `CPLConv2d`, `LOT`, `SLLConv2d`, `SOC`, `SpectralNormConv2d{,Strict}`, `SandwichConv` | `AOL, BCOP, Cayley, CPL, LOT, SLL, SOC, SN, Sand` |
 | **Activation** | `MaxMin`, `Abs`, `LinearSpline`, `Householder`, `NActivation` | `GS, AV, LS, HH, NA` |
 | **Loss** | `LipCrossEntropyLoss`, `MulticlassHingeWithMargin` | `CE, HM` |
-
-`SpectralNormConv2d` and the four extra activations (`Abs`, `LinearSpline`, `Householder`, `NActivation`) are fork additions — see [docs/SPEC.md](docs/SPEC.md). The seven canonical Lipschitz layers from the upstream paper are unchanged.
 
 ## Repository layout
 
